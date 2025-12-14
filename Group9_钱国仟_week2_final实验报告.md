@@ -14,12 +14,16 @@
 - **文件管理**
   1. 执行`mkdir test_dir`创建测试目录，`touch test.txt`创建测试文件；
   2. 执行`mv test.txt test_dir/`移动文件，`rm -rf test_dir`删除目录及文件。
+   ![创建移动删除文件截图](picture\创建移动删除文件截图.png)
 - **软件安装**
   1. 执行`sudo apt update`更新软件源；
+  ![apt安装软件](picture\apt安装软件.png)
   2. 执行`sudo apt install tree`安装tree工具，完成apt安装流程验证。
 - **进程管理**
   1. 执行`ps -aux`查看系统所有进程，定位目标进程PID；
+   ![ps查看进程](picture\ps查看进程.png)
   2. 执行`kill [PID]`终止指定进程，完成进程管控。
+   ![kill](picture\kill.png)
 
 ### 2. Python与C++编程练习
 - **Python HelloWorld**
@@ -30,30 +34,34 @@
   2. 执行`g++ sum.cpp -o sum`编译生成可执行文件，运行`./sum`实现数字输入与求和。
 - **VSCode调试**
   1. 打开VSCode加载代码文件，配置`launch.json`调试配置；
+   ![VSCode调试截图](picture\VSCode调试截图.png)
   2. 添加断点并启动调试，完成代码基础调试。
 
 ### 3. ROS1 Noetic安装验证
 1. 终端输入`roscore`，确认ROS Master启动成功，无端口占用异常；
+  ![roscore启动截图](picture\roscore启动截图.png)
 2. 新开终端执行`rosnode list`，查看当前ROS系统节点，验证节点通信基础环境；
+  ![rosnode list](picture\rosnodelist.png)
 3. 执行`echo $ROS_PACKAGE_PATH`，确认输出路径包含ROS核心包和自定义工作空间路径。
 
 ### 4. CATKIN工作空间与功能包
 - **创建工作空间**
   1. 执行`mkdir -p catkin_ws/src`创建目录结构；
   2. 进入catkin_ws目录，执行`catkin_make`完成编译；
+   ![catkin_ws 创建与 catkin_make 编译](picture\catkin_ws创建与catkin_make编译.png)
   3. 执行`source devel/setup.bash`配置工作空间环境变量。
 - **创建功能包**
-  进入src目录，执行`catkin_create_pkg beginner_tutorials roscpp rospy std_msgs`，创建含ROS基础依赖的功能包。
+  进入src目录，执行`catkin_create_pkg beginner_tutorials roscpp rospy std_msgs`，创建含ROS基础依赖的功能包。![alt text](picture/beginner_tutorials功能包.png)
 - **运行HelloWorld节点**
   1. 在功能包src目录编写C++/Python版本HelloWorld节点代码；
-  2. 编译后执行`rosrun beginner_tutorials [节点名称]`，终端输出HelloWorld信息。
+  2. 编译后执行`rosrun beginner_tutorials [节点名称]`，终端输出HelloWorld信息。![alt text](picture/HelloWorld节点运行.png)
 
 ### 5. Turtlesim小乌龟基础控制
 - **键盘控制**
-  1. 终端1执行`rosrun turtlesim turtlesim_node`启动仿真窗口；
-  2. 终端2执行`rosrun turtlesim turtle_teleop_key`，通过方向键控制小乌龟移动。
+  1. 终端1执行`rosrun turtlesim turtlesim_node`启动仿真窗口；![alt text](picture/turtlesim窗口.png)
+  2. 终端2执行`rosrun turtlesim turtle_teleop_key`，通过方向键控制小乌龟移动。![alt text](picture/teleop_key控制.png)
 - **rostopic控制**
-  执行`rostopic pub /cmd_vel geometry_msgs/Twist "linear: {x: 1.0, y: 0.0, z: 0.0}; angular: {x: 0.0, y: 0.0, z: 0.5}" -r 10`，通过话题控制小乌龟做圆周运动。
+  执行`rostopic pub /cmd_vel geometry_msgs/Twist "linear: {x: 1.0, y: 0.0, z: 0.0}; angular: {x: 0.0, y: 0.0, z: 0.5}" -r 10`，通过话题控制小乌龟做圆周运动。![alt text](<picture/rostopicpubcmd_vel 截图.png>)
 - **程序控制画圆**
   1. 编写Python/C++代码，通过ROS Publisher持续发布固定线速度和角速度指令；
   2. 编译运行后实现小乌龟自动画圆。
@@ -64,7 +72,7 @@
 - **启动多乌龟节点**
   执行`roslaunch beginner_tutorials multi_turtle.launch`，打开多只小乌龟仿真窗口。
 - **分别控制乌龟**
-  针对不同命名空间，执行`rostopic pub /turtleA/cmd_vel [速度指令]`和`rostopic pub /turtleB/cmd_vel [速度指令]`，实现独立控制。
+  针对不同命名空间，执行`rostopic pub /turtleA/cmd_vel [速度指令]`和`rostopic pub /turtleB/cmd_vel [速度指令]`，实现独立控制。![alt text](picture/rostopic分别控制两只乌龟.png)
 - **rqt工具查看**
   1. 执行`rqt_graph`查看节点与话题通信拓扑图；
   2. 执行`rqt_plot`绘制乌龟速度变化曲线，验证多节点通信状态。
